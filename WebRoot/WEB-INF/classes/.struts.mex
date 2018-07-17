@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Struts2Diagram version="2.0">
+  <package name="gdut.action" location="406,133" size="170,70">
+    <action name="login" location="82,31" size="150,40" />
+  </package>
+</Struts2Diagram>
+

@@ -1,0 +1,6 @@
+*.classpath
+*.springBeans
+*.project
+*.myhibenatedata
+*.classpath
+.settings/
