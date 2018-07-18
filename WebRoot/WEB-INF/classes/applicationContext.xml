@@ -65,15 +65,25 @@
 	<bean id="iUserDao" class="gdut.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>	
+	<bean id="iReplyDao" class="gdut.dao.impl.ReplyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>	
 	<!-- service bean 注入 -->
 	<bean id="iUserService" class="gdut.service.impl.UserServiceImpl">
 		<property name="iUserDao" ref="iUserDao"></property>
 	</bean>
+	<bean id="iReplyService" class="gdut.service.impl.ReplyServiceImpl">
+		<property name="iReplyDao" ref="iReplyDao"></property>
+	</bean>
+	
+	
 	<!-- action bean 注入 -->
 	<bean id="UserAction" class="gdut.action.UserAction">
 		<property name="iUserService" ref="iUserService"></property>
 	</bean>
-	
+	<bean id="ReplyAction" class="gdut.action.ReplyAction">
+		<property name="iReplyService" ref="iReplyService"></property>
+	</bean>
 	
 	<!-- 
 		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">

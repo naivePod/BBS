@@ -7,5 +7,10 @@
 			<result >/success.jsp</result>
 		<result name="error">/index.jsp</result>
 		</action>
+		
+		<action name="postReply" class="gdut.action.ReplyAction" method="postReply">
+			<result >/success.jsp</result>
+		<result name="error">/index.jsp</result>
+		</action>
 	</package>
 </struts>    

@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>帖子</title>
@@ -45,7 +45,7 @@
             </c:forEach>
         </table>
     </div>
-    <form action="${pageContext.request.contextPath}/DealSendReplyServlet" class="form-horizontal">
+    <form action="postReply" class="form-horizontal">
         <input type="hidden" name="article_id" value="${article.article_id}">
         <div class="form-group">
             <label for="replyContent" class="col-sm-2 control-label" >回复内容</label>
