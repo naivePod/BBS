@@ -50,7 +50,7 @@
         <div class="form-group">
             <label for="replyContent" class="col-sm-2 control-label" >回复内容</label>
             <div class="col-sm-10">
-                <textarea style="width:500px;height: 200px;" id="replyContent" name="replyContent"></textarea>
+                <textarea style="width:500px;height: 200px;" id="replyContent" name="reply.replyContent"></textarea>
             </div>
         </div>
         <div class="form-group">

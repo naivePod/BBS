@@ -12,7 +12,17 @@ import gdut.service.IReplyService;
 
 public class ReplyAction extends ActionSupport{
 	private IReplyService iReplyService;
-	private String replyContent;
+	private Reply reply;
+	public Reply getReply() {
+		return reply;
+	}
+
+	public void setReply(Reply reply) {
+		this.reply = reply;
+	}
+
+
+
 	private Integer article_id;
 	public static final Logger logger = LoggerFactory.getLogger(ReplyAction.class);
 	public Integer getArticle_id() {
@@ -25,26 +35,13 @@ public class ReplyAction extends ActionSupport{
 
 
 
-	private List<Reply> replies;
 	
-
-	public String getReplyContent() {
-		return replyContent;
-	}
-
-	public void setReplyContent(String replyContent) {
-		this.replyContent = replyContent;
-	}
+	
 
 	
 
-	public List<Reply> getReplies() {
-		return replies;
-	}
+	
 
-	public void setReplies(List<Reply> replies) {
-		this.replies = replies;
-	}
 	
 	
 	public IReplyService getiReplyService() {
@@ -60,9 +57,8 @@ public class ReplyAction extends ActionSupport{
 
 
 	public String postReply() {
-		Reply reply = new Reply();
-		System.out.println("reply:"+article_id + replyContent);
-		boolean isSuccess = iReplyService.post(article_id, replyContent);
+		
+		boolean isSuccess = iReplyService.post(article_id, reply.getReplyContent());
 		if(!isSuccess) {
 			return "error";
 		}

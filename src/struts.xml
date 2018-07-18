@@ -3,14 +3,29 @@
 <struts>
 
 	<package name="gdut.action" extends="struts-default" namespace="/">
+	
+		<interceptors>
+			
+			<interceptor name="validateCharacter" class="gdut.util.ReplyIntercept"></interceptor>
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="validateCharacter"></interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<global-results>
+			<result name="out">/index.jsp</result>
+		</global-results>
 		<action name="login" class="UserAction" method="login">
 			<result >/success.jsp</result>
-		<result name="error">/index.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
 		
 		<action name="postReply" class="gdut.action.ReplyAction" method="postReply">
+			<interceptor-ref name="validateCharacter"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result >/success.jsp</result>
-		<result name="error">/index.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
+		
 	</package>
 </struts>    
