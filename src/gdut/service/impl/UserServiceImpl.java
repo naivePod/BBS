@@ -22,7 +22,9 @@ public class UserServiceImpl implements IUserService {
 		return true;
 	}
 
-
-
-	
+	@Override
+	public boolean regist(User user)
+	{
+		return  iUserDao.registUser(user);
+	}	
 }

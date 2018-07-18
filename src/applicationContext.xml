@@ -40,7 +40,6 @@
 				  <prop key="hibernate.current_session_context_class">thread</prop>
 				  <prop key=""></prop>
 			</props>
-			
 		</property>
 		<property name="packagesToScan">
             <list>
@@ -54,26 +53,32 @@
 				<value>gdut/po/Reply.hbm.xml</value>
 				<value>gdut/po/Top.hbm.xml</value>
 				</list>
-		</property></bean>
+		</property>
+	</bean>
+	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	<!-- dao bean 注入 -->
 	<bean id="iUserDao" class="gdut.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>	
+	
 	<!-- service bean 注入 -->
 	<bean id="iUserService" class="gdut.service.impl.UserServiceImpl">
 		<property name="iUserDao" ref="iUserDao"></property>
 	</bean>
+	
 	<!-- action bean 注入 -->
 	<bean id="UserAction" class="gdut.action.UserAction">
 		<property name="iUserService" ref="iUserService"></property>
 	</bean>
 	
+
 	
 	<!-- 
 		<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">

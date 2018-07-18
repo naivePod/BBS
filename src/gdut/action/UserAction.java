@@ -13,6 +13,7 @@ public class UserAction extends ActionSupport {
 	private String username;
 	private String password;
 	private IUserService iUserService;
+	private User user;
 	public IUserService getiUserService() {
 		return iUserService;
 	}
@@ -22,8 +23,6 @@ public class UserAction extends ActionSupport {
 	public void setiUserService(IUserService iUserService) {
 		this.iUserService = iUserService;
 	}
-
-
 
 	private String errorInfo;
 	
@@ -67,13 +66,36 @@ public class UserAction extends ActionSupport {
 		this.password = password;
 	}
 
+	public User getUser()
+	{
+		return user;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
+	}
+
 	public String login() {
 		if(iUserService.login(username, password)) {
 			return SUCCESS;
 		}
-		errorInfo = "ÕËºÅ»òÃÜÂë´íÎó";
+		errorInfo = "ï¿½ËºÅ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
 		
 		return "error";
+	}
+	
+	/*
+	 * æ³¨å†Œæ¨¡å—
+	 * */
+	public String regist(){
+		System.out.println(user.toString());
+		if(iUserService.regist(user))
+			return "success";
+		else {
+			errorInfo="ç™»å½•é”™è¯¯";
+			return "error";
+		}
 	}
 
 

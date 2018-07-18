@@ -2,10 +2,12 @@ package gdut.dao.impl;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Example;
 
 import gdut.dao.IUserDao;
 import gdut.po.User;
@@ -66,8 +68,27 @@ public class UserDaoImpl implements IUserDao {
 		if(res.size() == 0) {
 			return null;
 		}
-		
 		return (User)res.get(0);
 	}
+	@Override
+	public boolean registUser(User user)
+	{
+		Session session=sessionFactory.getCurrentSession();
+		Transaction tx=session.beginTransaction();
+		try
+		{
+			session.save(user);
+			tx.commit();
+			
+		} catch (Exception e)
+		{
+			tx.rollback();
+			return false;
+		}
+		return true;
+	}
+	
+	
+	
 	
 }

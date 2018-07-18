@@ -142,4 +142,9 @@ public class User implements java.io.Serializable {
 		this.articles = articles;
 	}
 
+	@Override
+	public String toString(){
+		return "userName"+this.userName+"psw"+this.psw +"email"+this.email +"birth"+this.birth+
+				role+ createTime+ lastUpdateTime+ tops;
+	}
 }

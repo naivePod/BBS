@@ -15,14 +15,14 @@
     <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/RegisterServlet" class="form-horizontal" method="post">
+    <form action="regist" class="form-horizontal" method="post">
         <div class="form-group" style="margin-top:30px;">
             <label class="col-sm-offset-2 col-sm-10 "><h3>用户注册</h3></label>
         </div>
         <div class="form-group">
             <label for="username" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-8">
-                <input type="text" id="userName" name="userName" placeholder="用户名">
+                <input type="text" id="userName" name="user.userName" placeholder="用户名">
             </div>
         </div>
         <c:if test="${formBean.errors.userName != null}">
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="psw" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-10">
-                <input type="password" id="psw" name="psw" placeholder="密码">
+                <input type="password" id="psw" name="user.psw" placeholder="密码">
             </div>
         </div>
         <c:if test="${formBean.errors.psw != null}">
@@ -76,13 +76,13 @@
         <div class="form-group">
             <label for="email" class="col-sm-2 control-label">邮箱</label>
             <div class="col-sm-10">
-                <input type="text" id="email" name="email" placeholder="邮箱">
+                <input type="text" id="email" name="user.email" placeholder="邮箱">
             </div>
         </div>
         <div class="form-group">
             <label for="birth" class="col-sm-2 control-label">出生日期</label>
             <div class="col-sm-10">
-                <input type="text" id="birth" name="birth" placeholder="出生日期">
+                <input type="text" id="birth" name="user.birth" placeholder="出生日期">
             </div>
         </div>
         <c:if test="${message!=null}">
