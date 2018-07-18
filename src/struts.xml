@@ -20,11 +20,21 @@
 			<result name="error">/index.jsp</result>
 		</action>
 		
+<<<<<<< HEAD
+		<action name="regist" class="gdut.action.UserAction" method="regist">
+			<result name="success">/login.jsp</result>
+			<result name="error">/index.jsp</result>
+=======
 		<action name="postReply" class="gdut.action.ReplyAction" method="postReply">
 			<interceptor-ref name="validateCharacter"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result >/success.jsp</result>
+<<<<<<< HEAD
 			<result name="error">/index.jsp</result>
+=======
+		<result name="error">/index.jsp</result>
+>>>>>>> 1e18da228610915e8bcd2297da846c0419822608
+>>>>>>> 97a7a82a9cc8dd37092ee8b12591f551bed8eef2
 		</action>
 		
 	</package>
