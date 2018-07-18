@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import gdut.dao.IUserDao;
 import gdut.po.User;
 
+
 public class UserDaoImpl implements IUserDao {
 	
 	private SessionFactory sessionFactory;
