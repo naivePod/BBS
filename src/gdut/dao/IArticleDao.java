@@ -1,5 +1,12 @@
 package gdut.dao;
 
-public class IArticleDao {
+import gdut.po.Article;
 
+
+
+public interface IArticleDao {
+	public void insert(Article article);
+	public void update(Article article);
+	public void delete(Article article);
+	public Article findById(Integer id);
 }

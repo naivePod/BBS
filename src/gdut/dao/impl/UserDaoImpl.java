@@ -36,7 +36,7 @@ public class UserDaoImpl implements IUserDao {
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
