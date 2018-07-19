@@ -99,10 +99,10 @@
 		<property name="articleService" ref="ArticleSevice"></property>
 		<property name="article" ref="Article"></property>
 	</bean>
-	<bean id="ArticleSevice" class="gdut.service.impl.ArticleSerivceImp">
+	<bean id="ArticleSevice" class="gdut.service.impl.ArticleSerivceImpl">
 		<property name="articleDao" ref="ArticleDao"></property>
 	</bean>
-	<bean id="ArticleDao" class="gdut.dao.impl.ArticleDaoImp">
+	<bean id="ArticleDao" class="gdut.dao.impl.ArticleDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="Article" class="gdut.po.Article">

@@ -5,17 +5,18 @@ import java.util.Set;
 
 import gdut.po.Article;
 import gdut.po.Reply;
+import gdut.po.Top;
 import gdut.po.User;
-import gdut.service.ArticleService;
+import gdut.service.IArticleService;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class ArticleAction extends ActionSupport{
 	
-	ArticleService articleService;
+	IArticleService articleService;
 	
-	public void setArticleService(ArticleService articleService) {
+	public void setArticleService(IArticleService articleService) {
 		this.articleService = articleService;
 	}
 	
@@ -42,10 +43,26 @@ public class ArticleAction extends ActionSupport{
 	public void setArticle_id(Integer article_id) {
 		this.article_id = article_id;
 	}
-	
+	Top top;
+	List<Top> topArticles;
+	public List<Top> getTopArticles() {
+		return topArticles;
+	}
+	public void setTopArticles(List<Top> topArticles) {
+		this.topArticles = topArticles;
+	}
+	public Top getTops() {
+		return top;
+	}
+	public void setTops(Top tops) {
+		this.top = tops;
+	}
 	public String showArticles() {
 		articles=articleService.showArticles();
 		Article a = articles.get(0);
+		
+		topArticles=showTopArticle();
+
 		
 		return SUCCESS;
 	}
@@ -61,6 +78,7 @@ public class ArticleAction extends ActionSupport{
 		
 		ActionContext context = ActionContext.getContext();
 		User user = (User)context.getSession().get("current_user");
+		//ÖÃ¶¥Ìû×Ó
 		
 		if(user != null && user.getRole()==1 ){
 			articleService.delete(article_id);
@@ -72,5 +90,28 @@ public class ArticleAction extends ActionSupport{
 		replies=article.getReplies();
 		return SUCCESS;
 	}
+	public List<Top> showTopArticle(){
+		List<Top> list=articleService.showTopArticles();
+			if(list!=null){
+				
+				return list;
+			}
+			else
+				return null;
+			
+	}
+	public String deleteTop() {
+		articleService.deleteTop(article_id);
+		return SUCCESS;
+	}
+	public String Top() {
+		ActionContext context = ActionContext.getContext();
+		User user = (User)context.getSession().get("current_user");
+		if(user != null && user.getRole()==1 ){
+			articleService.insertTop(article_id);
+		}
+		return SUCCESS;
+	}
+
 	
 }

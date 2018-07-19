@@ -47,17 +47,18 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <c:forEach items="${topArticles}" var="article">
+            <c:forEach items="${topArticles}" var="top">
                 <thead>
                 <tr class="danger">
-                    <th><a href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}"><c:out value="${article.title_Content}"/></a></th>
-                    <th><c:out value="${article.article.articleContent}"/></th>
-                    <th><c:out value="${article.user.userName}"/></th>
-                    <th><c:out value="${article.ttime}"/></th>
+                    <th><a href="${pageContext.request.contextPath}/DealReply?article_id=${top.articleId}">
+                    <c:out value="${top.article.titleContent}"/></a></th>
+                    <th><c:out value="${top.article.articleContent}"/></th>
+                    <th><c:out value="${top.user.userName}"/></th>
+                    <th><c:out value="${top.ttime}"/></th>
                     <th>
-                        <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}" class="btn btn-primary btn-sm">查看</a>
+                        <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${top.articleId}" class="btn btn-primary btn-sm">查看</a>
                         <c:if test="${user.role==1}">
-                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticles?article_id=${article.articleId}&choice=0" class="btn btn-danger btn-sm">取消置顶</a>
+                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticles?article_id=${top.articleId}&choice=0" class="btn btn-danger btn-sm">取消置顶</a>
                         </c:if>
                     </th>
                 </tr>
@@ -73,7 +74,7 @@
                     <th>
                         <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}" class="btn btn-primary btn-sm">查看</a>
                         <c:if test="${user.role==1}">
-                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticles?article_id=${article.articleId}&choice=1" class="btn btn-success btn-sm">置顶</a>
+                            <a role="button" href="${pageContext.request.contextPath}/TopArticles?article_id=${article.articleId}&choice=1" class="btn btn-success btn-sm">置顶</a>
                             <a role="button" href="${pageContext.request.contextPath}/DeleteArticle?article_id=${article.articleId}" class="btn btn-danger btn-sm">删帖</a>
                             
                         </c:if>

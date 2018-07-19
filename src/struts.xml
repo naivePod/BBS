@@ -44,6 +44,16 @@
 			<result>/replies.jsp</result>
 		</action>
 		
+		<action name="DealTopArticles" class="ArticleAction" method="deleteTop">
+			<result type="redirectAction">showArticles</result>
+		</action>
+		
+		<action name="TopArticles" class="ArticleAction" method="Top">
+			<result type="redirectAction">showArticles</result>
+		</action>
+		
+		
+		
 		
 	</package>
 </struts>    
