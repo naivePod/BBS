@@ -13,6 +13,7 @@ public class ReplyIntercept extends AbstractInterceptor {
 		ReplyAction ReplyAction = (ReplyAction)ai.getAction();
 		
 		Reply reply = ReplyAction.getReply();
+		System.out.print(reply);
 		if(reply == null) {
 			return "out";
 		}

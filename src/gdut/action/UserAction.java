@@ -110,22 +110,27 @@ public class UserAction extends ActionSupport {
 			return SUCCESS;
 		}
 		User loginUser = iUserService.login(user.getUserName(), user.getPsw());
-		System.out.print(username + password);
+		
 		if(loginUser != null) {
+			loginUser.setPsw(null);
 			if(role.equals(Const.ROLE.ROLE_ADMIN)) {
 				//管理员登录
 				if(!loginUser.getRole().equals(Const.ROLE.ROLE_ADMIN)) {
 					errorInfo = "非管理员无法登录";
 					return "error";
 				} {
+					context.getSession().put(Const.CURRENT_USER, loginUser);
 					return SUCCESS;
 				}
 			}
+			
 			loginUser.setRole(Const.ROLE.ROLE_USER);
+			context.getSession().put(Const.CURRENT_USER, loginUser);
 			return SUCCESS;
 		}
+
 		errorInfo = "账号或密码错误";
-		
+
 		return "error";
 	}
 	

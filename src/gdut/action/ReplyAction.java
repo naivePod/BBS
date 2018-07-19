@@ -5,10 +5,13 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 import gdut.po.Reply;
+import gdut.po.User;
 import gdut.service.IReplyService;
+import gdut.util.Const;
 
 public class ReplyAction extends ActionSupport{
 	private IReplyService iReplyService;
@@ -44,10 +47,6 @@ public class ReplyAction extends ActionSupport{
 
 	
 	
-	public IReplyService getiReplyService() {
-		return iReplyService;
-	}
-
 
 
 	public void setiReplyService(IReplyService iReplyService) {
@@ -58,7 +57,10 @@ public class ReplyAction extends ActionSupport{
 
 	public String postReply() {
 		
-		boolean isSuccess = iReplyService.post(article_id, reply.getReplyContent());
+		System.out.println("reply.getReplyContent()"+reply.getReplyContent());
+		ActionContext context = ActionContext.getContext();
+		User user = (User)context.getSession().get(Const.CURRENT_USER); 
+		boolean isSuccess = iReplyService.post(article_id, reply.getReplyContent(), user);
 		if(!isSuccess) {
 			return "error";
 		}

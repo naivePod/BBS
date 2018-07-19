@@ -10,16 +10,16 @@
 <html>
 <head>
     <title>帖子</title>
-    <link rel="stylesheet" type="text/css" href="/images/css/bootstrap.min.css">
-    <script language="JavaScript" type="text/javascript" src="/images/js/jquery-3.2.1.min.js"></script>
-    <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/images/css/bootstrap.min.css">
+    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/images/js/jquery-3.2.1.min.js"></script>
+    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/images/js/bootstrap.min.js"></script>
 
 
 </head>
 <body>
     <form action="" class="form-horizontal">
         <div class="form-group" style="margin-top:30px;">
-            <label class="col-sm-2 control-label"><h3>主题:${article.title_Content}</h3></label>
+            <label class="col-sm-2 control-label"><h3>主题:${article.titleContent}</h3></label>
         </div>
         <hr>
     </form>
@@ -38,7 +38,7 @@
                 <tr>
                     <th><c:out value="${reply.floor}"/></th>
                     <th><c:out value="${reply.replyContent}"/></th>
-                    <th><c:out value="${reply.userName}"/></th>
+                    <th><c:out value="${reply.user.userName}"/></th>
                     <th><c:out value="${reply.replyTime}"/></th>
                 </tr>
                 </thead>
@@ -46,7 +46,7 @@
         </table>
     </div>
     <form action="postReply" class="form-horizontal">
-        <input type="hidden" name="article_id" value="${article.article_id}">
+        <input type="hidden" name="article_id" value="${article.articleId}">
         <div class="form-group">
             <label for="replyContent" class="col-sm-2 control-label" >回复内容</label>
             <div class="col-sm-10">
@@ -55,7 +55,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <a role="button" href="${pageContext.request.contextPath}/DealArticlesServlet" class="btn btn-Warning">返回</a>
+                <a role="button" href="${pageContext.request.contextPath}/showArticles" class="btn btn-Warning">返回</a>
                 <button type="submit" class="btn btn-primary">
                     发表
                 </button>

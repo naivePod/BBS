@@ -1,5 +1,10 @@
 package gdut.dao.impl;
 
+
+
+import java.util.List;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -52,5 +57,14 @@ public class ReplyDaoImpl implements IReplyDao{
 		
 		return null;
 	}
-
+	public int findFloor(Integer articleId) {
+		Transaction tx=this.getCurrentSession().beginTransaction();
+		Query query = this.getCurrentSession().createQuery("select max(floor) from Reply r where r.article.articleId = ?");
+		query.setParameter(0, articleId);
+		List res = query.list();
+		tx.commit();
+		
+		return res.size();
+		
+	}
 }

@@ -10,7 +10,7 @@
             <column name="Article_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="user" class="gdut.po.User" fetch="select">
+        <many-to-one name="user" class="gdut.po.User" fetch="select" lazy="false">
             <column name="User_id" not-null="true" />
         </many-to-one>
         <property name="titleContent" type="java.lang.String">
@@ -22,13 +22,13 @@
         <property name="titleTime" type="java.sql.Timestamp">
             <column name="Title_Time" length="19" not-null="true" />
         </property>
-        <set name="tops" inverse="true">
+        <set name="tops" inverse="true" lazy="false">
             <key>
                 <column name="Article_id" not-null="true" unique="true" />
             </key>
             <one-to-many class="gdut.po.Top" />
         </set>
-        <set name="replies" inverse="true">
+        <set name="replies" inverse="true" lazy="false" order-by="floor" >
             <key>
                 <column name="Article_id" not-null="true" />
             </key>

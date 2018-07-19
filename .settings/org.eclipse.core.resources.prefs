@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding/<project>=UTF-8
+=======
+encoding//src/gdut/action/UserAction.java=UTF-8
+>>>>>>> 7bb41cd862347a7a71e342f9511dc6acf018d558

@@ -9,4 +9,5 @@ public interface IReplyDao {
 	public void update(Reply reply);
 	public void delete(Reply reply);
 	public Reply findById(Integer id);
+	public int findFloor(Integer articleId);
 }

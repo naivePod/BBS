@@ -6,6 +6,7 @@ import gdut.dao.IArticleDao;
 import gdut.dao.IReplyDao;
 import gdut.po.Article;
 import gdut.po.Reply;
+import gdut.po.User;
 import gdut.service.IReplyService;
 
 public class ReplyServiceImpl implements IReplyService{
@@ -29,13 +30,16 @@ public class ReplyServiceImpl implements IReplyService{
 		this.iReplyDao = iReplyDao;
 	}
 	
-	public boolean post(Integer article_id, String replyContent) {
+	public boolean post(Integer article_id, String replyContent, User user) {
 		Reply reply = new Reply();
-		
+		System.out.println("articleid"+article_id);
 		Article article = iArticleDao.findById(article_id);
+		int floor = iReplyDao.findFloor(article_id);
 		if(article == null || replyContent == null) {
 			return false;
 		}
+		reply.setFloor(floor);
+		reply.setUser(user);
 		reply.setArticle(article);
 		reply.setReplyContent(replyContent);
 		iReplyDao.update(reply);

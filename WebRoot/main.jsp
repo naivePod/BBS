@@ -6,32 +6,32 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
     <title>帖子展示</title>
-    <link rel="stylesheet" type="text/css" href="/images/css/bootstrap.min.css">
-    <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/images/css/bootstrap.min.css">
+    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/images/js/bootstrap.min.js"></script>
+	
 </head>
 <body>
     <form action="sendArticle.jsp" class="form-horizontal">
         <div class="form-group" style="margin-top:30px;">
-            <label class="col-sm-offset-2 col-sm-10 "><h3>${user.userName}</h3></label>
+            <label class="col-sm-offset-2 col-sm-10 "><h3>${currentUser.userName}</h3></label>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">
                     发帖
                 </button>
-                <c:if test="${user.isAdmin==0}">
+                <c:if test="${currentUser.role==0}">
                     <a role="button" href="${pageContext.request.contextPath}/updateInfo.jsp" class="btn btn-success">修改密码</a>
                 </c:if>
-                <c:if test="${user.isAdmin==1}">
+                <c:if test="${currentUser.role==1}">
                     <a role="button" href="${pageContext.request.contextPath}/QueryUsersServlet" class="btn btn-success">用户情况</a>
                 </c:if>
                 <%--<a role="button" href="${pageContext.request.contextPath}/updateInfo.jsp" class="btn btn-success">修改密码</a>--%>
-                <a role="button" href="${pageContext.request.contextPath}/LogoutServlet" class="btn btn-danger">注销</a>
+                <a role="button" href="${pageContext.request.contextPath}/logout" class="btn btn-danger">注销</a>
             </div>
         </div>
         <hr>
@@ -47,17 +47,18 @@
                 <th>操作</th>
             </tr>
             </thead>
-            <c:forEach items="${topArticles}" var="article">
+            <c:forEach items="${topArticles}" var="top">
                 <thead>
                 <tr class="danger">
-                    <th><a href="${pageContext.request.contextPath}/DealReplyServlet?article_id=${article.article_id}"><c:out value="${article.title_Content}"/></a></th>
-                    <th><c:out value="${article.article_Content}"/></th>
-                    <th><c:out value="${article.userName}"/></th>
-                    <th><c:out value="${article.title_time}"/></th>
+                    <th><a href="${pageContext.request.contextPath}/DealReply?article_id=${top.articleId}">
+                    <c:out value="${top.article.titleContent}"/></a></th>
+                    <th><c:out value="${top.article.articleContent}"/></th>
+                    <th><c:out value="${top.user.userName}"/></th>
+                    <th><c:out value="${top.ttime}"/></th>
                     <th>
-                        <a role="button" href="${pageContext.request.contextPath}/DealReplyServlet?article_id=${article.article_id}" class="btn btn-primary btn-sm">查看</a>
-                        <c:if test="${user.isAdmin==1}">
-                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticlesServlet?article_id=${article.article_id}&choice=0" class="btn btn-danger btn-sm">取消置顶</a>
+                        <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${top.articleId}" class="btn btn-primary btn-sm">查看</a>
+                        <c:if test="${user.role==1}">
+                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticles?article_id=${top.articleId}&choice=0" class="btn btn-danger btn-sm">取消置顶</a>
                         </c:if>
                     </th>
                 </tr>
@@ -66,15 +67,16 @@
             <c:forEach items="${articles}" var="article">
                 <thead>
                 <tr>
-                    <th><a href="${pageContext.request.contextPath}/DealReplyServlet?article_id=${article.article_id}"><c:out value="${article.title_Content}"/></a></th>
-                    <th><c:out value="${article.article_Content}"/></th>
-                    <th><c:out value="${article.userName}"/></th>
-                    <th><c:out value="${article.title_time}"/></th>
+                    <th><a href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}"><c:out value="${article.titleContent}"/></a></th>
+                    <th><c:out value="${article.articleContent}"/></th>
+                    <th><c:out value="${article.user.userName}"/></th>
+                    <th><c:out value="${article.titleTime}"/></th>
                     <th>
-                        <a role="button" href="${pageContext.request.contextPath}/DealReplyServlet?article_id=${article.article_id}" class="btn btn-primary btn-sm">查看</a>
-                        <c:if test="${user.isAdmin==1}">
-                            <a role="button" href="${pageContext.request.contextPath}/DealTopArticlesServlet?article_id=${article.article_id}&choice=1" class="btn btn-success btn-sm">置顶</a>
-                            <a role="button" href="${pageContext.request.contextPath}/DeleteArticleServlet?article_id=${article.article_id}" class="btn btn-danger btn-sm">删帖</a>
+                        <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}" class="btn btn-primary btn-sm">查看</a>
+                        <c:if test="${user.role==1}">
+                            <a role="button" href="${pageContext.request.contextPath}/TopArticles?article_id=${article.articleId}&choice=1" class="btn btn-success btn-sm">置顶</a>
+                            <a role="button" href="${pageContext.request.contextPath}/DeleteArticle?article_id=${article.articleId}" class="btn btn-danger btn-sm">删帖</a>
+                            
                         </c:if>
                     </th>
                 </tr>

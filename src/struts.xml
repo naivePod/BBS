@@ -16,28 +16,55 @@
 			<result name="out">/index.jsp</result>
 		</global-results>
 		<action name="login" class="UserAction" method="login">
-			<result type="chain">logout</result>
+			<result type="chain">showArticles</result>
 			<result name="error">/login.jsp</result>
 			
 		</action>
 		
 
 		<action name="regist" class="gdut.action.UserAction" method="regist">
+
 			<result name="success" type="redirect">/login.jsp</result>
 			<result name="error">/register.jsp</result>
+
 		</action>
 		<action name="postReply" class="gdut.action.ReplyAction" method="postReply">
+		<interceptor-ref name="defaultStack"></interceptor-ref>
 			<interceptor-ref name="validateCharacter"></interceptor-ref>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
-			<result >/success.jsp</result>
-			<result name="error">/index.jsp</result>
+			
+			<result type="chain">DealReply</result>
+			<result name="error" type="chain">DealReply</result>
 		</action>
 		<action name="validateUserName" class="gdut.action.UserAction" method="validateUserName">
 			<result type="json">/register.jsp</result>
 		</action>
 		<action name="logout" class="gdut.action.UserAction" method="logout">
 			<result name="success">/login.jsp</result>
+
 		</action>
+		
+		<action name="showArticles" class="ArticleAction" method="showArticles">
+			<result>/main.jsp</result>
+		</action>
+
+		<action name="DeleteArticle" class="ArticleAction" method="deleteArticle">
+			<result type="redirectAction">showArticles</result>
+		</action>
+		
+		<action name="DealReply" class="ArticleAction" method="queryArticle">
+			<result>/replies.jsp</result>
+		</action>
+		
+		<action name="DealTopArticles" class="ArticleAction" method="deleteTop">
+			<result type="redirectAction">showArticles</result>
+		</action>
+		
+		<action name="TopArticles" class="ArticleAction" method="Top">
+			<result type="redirectAction">showArticles</result>
+		</action>
+		
+		
+		
 		
 	</package>
 </struts>    
