@@ -1,6 +1,7 @@
 package gdut.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.logging.SimpleFormatter;
 
 import gdut.dao.IUserDao;
@@ -41,5 +42,11 @@ public class UserServiceImpl implements IUserService {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return iUserDao.findAll();
 	}
 }

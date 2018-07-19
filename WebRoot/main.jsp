@@ -27,8 +27,8 @@
                 <c:if test="${currentUser.role==0}">
                     <a role="button" href="${pageContext.request.contextPath}/updateInfo.jsp" class="btn btn-success">修改密码</a>
                 </c:if>
+                    <a role="button" href="${pageContext.request.contextPath}/QueryUsers" class="btn btn-success">用户情况</a>
                 <c:if test="${currentUser.role==1}">
-                    <a role="button" href="${pageContext.request.contextPath}/QueryUsersServlet" class="btn btn-success">用户情况</a>
                 </c:if>
                 <%--<a role="button" href="${pageContext.request.contextPath}/updateInfo.jsp" class="btn btn-success">修改密码</a>--%>
                 <a role="button" href="${pageContext.request.contextPath}/logout" class="btn btn-danger">注销</a>

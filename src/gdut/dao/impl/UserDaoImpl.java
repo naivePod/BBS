@@ -55,7 +55,13 @@ public class UserDaoImpl implements IUserDao {
 	@Override
 	public List<User> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		Transaction tx=this.getCurrentSession().beginTransaction();
+		Query query = getCurrentSession().createQuery("from User");
+		List<User> res = query.list();
+		if(res.size() == 0) {
+			return null;
+		}
+		return res;
 	}
 	@Override
 	public User selectByUsernameAndPassword(String username, String password) {

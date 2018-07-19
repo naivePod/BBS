@@ -31,19 +31,19 @@
         <property name="lastUpdateTime" type="java.util.Date">
             <column name="last_update_time" length="10" />
         </property>
-        <set name="tops" inverse="true">
+        <set name="tops" inverse="true" lazy="false">
             <key>
                 <column name="Aid" not-null="true" />
             </key>
             <one-to-many class="gdut.po.Top" />
         </set>
-        <set name="replies" inverse="true">
+        <set name="replies" inverse="true" lazy="false">
             <key>
                 <column name="User_id" not-null="true" />
             </key>
             <one-to-many class="gdut.po.Reply" />
         </set>
-        <set name="articles" inverse="true">
+        <set name="articles" inverse="true" lazy="false">
             <key>
                 <column name="User_id" not-null="true" />
             </key>
