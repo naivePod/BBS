@@ -1,5 +1,7 @@
 package gdut.action;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import gdut.dao.IUserDao;
@@ -103,6 +105,32 @@ public class UserAction extends ActionSupport {
 		this.user = user;
 	}
 
+	
+	
+	List<User> users;
+	List userarticle_count;
+
+	public List getUserarticle_count() {
+		return userarticle_count;
+	}
+
+
+
+	public void setUserarticle_count(List userarticle_count) {
+		this.userarticle_count = userarticle_count;
+	}
+
+
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
 	public String login() {
 		ActionContext context = ActionContext.getContext();
 		User currentUser = (User)context.getSession().get(Const.CURRENT_USER);
@@ -161,6 +189,16 @@ public class UserAction extends ActionSupport {
 		ActionContext context = ActionContext.getContext();
 		context.getSession().remove(Const.CURRENT_USER);
 		return SUCCESS;
+	}
+	
+	public String queryUsers() {
+		users=iUserService.findAll();
+		userarticle_count = new ArrayList();
+		for(int i=0;i<users.size();i++){
+			userarticle_count.add(users.get(i).getArticles().size());
+		}
+		return SUCCESS;
+		
 	}
 
 }
