@@ -10,7 +10,7 @@
             <column name="Reply_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="user" class="gdut.po.User" fetch="select">
+        <many-to-one name="user" class="gdut.po.User" fetch="select" lazy="false">
             <column name="User_id" not-null="true" />
         </many-to-one>
         <many-to-one name="article" class="gdut.po.Article" fetch="select">

@@ -7,36 +7,36 @@ import gdut.po.Top;
 
 public interface IArticleDao {
 	/*
-	 * ²åÈëArticle
+	 * ï¿½ï¿½ï¿½ï¿½Article
 	 * */
-	public void insert(Article article) ;
+	public Article insert(Article article) ;
 	/*
-	 * ¸üÐÂArticle
+	 * ï¿½ï¿½ï¿½ï¿½Article
 	 * */
 	public void update(Article article); 
 	/*
-	 * É¾³ýÌû×Ó
+	 * É¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public void delete(Integer id) ;
 	/*
-	 * ²é¿´Ìû×ÓÐÅÏ¢
+	 * ï¿½é¿´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * */
 	public Article findById(Integer id); 
 	/*
-	 * ÏÔÊ¾È«²¿Ìû×Ó
+	 * ï¿½ï¿½Ê¾È«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public List<Article> showArticles() ;
 	/*
-	 * ÏÔÊ¾ÖÃ¶¥Ìû×Ó
+	 * ï¿½ï¿½Ê¾ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public List<Top> showTopArticles() ;
 	
 	/*
-	 * É¾³ýÖÃ¶¥
+	 * É¾ï¿½ï¿½ï¿½Ã¶ï¿½
 	 * */
 	public  void deleteTop(Integer id) ;
 	/*
-	 *ÖÃ¶¥ 
+	 *ï¿½Ã¶ï¿½ 
 	 */
 	public  void insertTop(Integer id) ;
 	

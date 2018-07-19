@@ -102,6 +102,7 @@
 	</bean>
 	<bean id="ArticleSevice" class="gdut.service.impl.ArticleSerivceImpl">
 		<property name="articleDao" ref="ArticleDao"></property>
+		<property name="iReplyDao" ref="iReplyDao"></property>
 	</bean>
 	<bean id="ArticleDao" class="gdut.dao.impl.ArticleDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>

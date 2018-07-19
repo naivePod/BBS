@@ -17,6 +17,23 @@ public class ArticleAction extends ActionSupport{
 	
 	IArticleService articleService;
 	
+	private String content;
+	private String title_content;
+	
+	
+	
+	public String getTitle_content() {
+		return title_content;
+	}
+	public void setTitle_content(String title_content) {
+		this.title_content = title_content;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public void setArticleService(IArticleService articleService) {
 		this.articleService = articleService;
 	}
@@ -112,6 +129,15 @@ public class ArticleAction extends ActionSupport{
 			articleService.insertTop(article_id);
 		}
 		return SUCCESS;
+	}
+	
+	public String postArticle() {
+		ActionContext context = ActionContext.getContext();
+		User user = (User)context.getSession().get(Const.CURRENT_USER);
+		articleService.postArticle(content,title_content, user);
+		
+		return SUCCESS;
+		
 	}
 
 	

@@ -38,7 +38,7 @@ public class ReplyServiceImpl implements IReplyService{
 		if(article == null || replyContent == null) {
 			return false;
 		}
-		reply.setFloor(floor);
+		reply.setFloor(floor+1);
 		reply.setUser(user);
 		reply.setArticle(article);
 		reply.setReplyContent(replyContent);

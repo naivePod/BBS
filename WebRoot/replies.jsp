@@ -45,7 +45,7 @@
             </c:forEach>
         </table>
     </div>
-    <form action="postReply" class="form-horizontal">
+    <form action="postReply" class="form-horizontal" method="post">
         <input type="hidden" name="article_id" value="${article.articleId}">
         <div class="form-group">
             <label for="replyContent" class="col-sm-2 control-label" >回复内容</label>

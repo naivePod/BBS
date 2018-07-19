@@ -1,15 +1,26 @@
 package gdut.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import gdut.dao.IArticleDao;
+import gdut.dao.IReplyDao;
 import gdut.po.Article;
+import gdut.po.Reply;
 import gdut.po.Top;
+import gdut.po.User;
 import gdut.service.IArticleService;
 
 public class ArticleSerivceImpl implements IArticleService{
 
 	IArticleDao articleDao;
+	IReplyDao iReplyDao;
+	
+	public void setiReplyDao(IReplyDao iReplyDao) {
+		this.iReplyDao = iReplyDao;
+	}
+
 	public void setArticleDao(IArticleDao articleDao) {
 		this.articleDao = articleDao;
 	}
@@ -62,4 +73,22 @@ public class ArticleSerivceImpl implements IArticleService{
 		articleDao.insertTop(id);
 	}
 	
+	
+	public boolean postArticle(String content,String title_content, User user) {
+		
+		Article article = new Article();
+		article.setArticleContent(content);
+		article.setUser(user);
+		article.setTitleContent(title_content);
+		Article newArticle = articleDao.insert(article);
+		
+		Reply reply = new Reply();
+		reply.setUser(user);
+		reply.setReplyContent(content);
+		reply.setArticle(newArticle);
+		reply.setFloor(1);
+		iReplyDao.insert(reply);
+		
+		return true;
+	}
 }

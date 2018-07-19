@@ -57,7 +57,7 @@
                     <th><c:out value="${top.ttime}"/></th>
                     <th>
                         <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${top.articleId}" class="btn btn-primary btn-sm">查看</a>
-                        <c:if test="${user.role==1}">
+                        <c:if test="${currentUser.role==1}">
                             <a role="button" href="${pageContext.request.contextPath}/DealTopArticles?article_id=${top.articleId}&choice=0" class="btn btn-danger btn-sm">取消置顶</a>
                         </c:if>
                     </th>
@@ -73,7 +73,7 @@
                     <th><c:out value="${article.titleTime}"/></th>
                     <th>
                         <a role="button" href="${pageContext.request.contextPath}/DealReply?article_id=${article.articleId}" class="btn btn-primary btn-sm">查看</a>
-                        <c:if test="${user.role==1}">
+                        <c:if test="${currentUser.role==1}">
                             <a role="button" href="${pageContext.request.contextPath}/TopArticles?article_id=${article.articleId}&choice=1" class="btn btn-success btn-sm">置顶</a>
                             <a role="button" href="${pageContext.request.contextPath}/DeleteArticle?article_id=${article.articleId}" class="btn btn-danger btn-sm">删帖</a>
                             

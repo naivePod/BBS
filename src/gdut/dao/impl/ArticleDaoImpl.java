@@ -14,6 +14,7 @@ import gdut.dao.IArticleDao;
 import gdut.po.Article;
 import gdut.po.Top;
 import gdut.po.User;
+import gdut.util.Const;
 
 public class ArticleDaoImpl implements IArticleDao {
 
@@ -31,11 +32,13 @@ public class ArticleDaoImpl implements IArticleDao {
 	   }
 
 	@Override
-	public void insert(Article article) {
+	public Article insert(Article article) {
 		// TODO Auto-generated method stub
 		Transaction tx = sessionFactory.getCurrentSession().beginTransaction();
-		sessionFactory.getCurrentSession().save(article);
+		getCurrentSession().save(article);
+		
 		tx.commit();
+		return article;
 	}
 
 	@Override
@@ -82,9 +85,15 @@ public class ArticleDaoImpl implements IArticleDao {
 		
 		Query query1 = getCurrentSession().createQuery("select articleId from Top t ");
 		List<Integer> ids = query1.list();
-		Query query = getCurrentSession().createQuery("from Article a where a.articleId not in (:a) order by a.titleTime desc ");
-		query.setParameterList("a", ids) ;
-		list=query.list();
+		if(ids.size() > 0) {
+			Query query = getCurrentSession().createQuery("from Article a where a.articleId not in (:a) order by a.titleTime desc ");
+			query.setParameterList("a", ids) ;
+			list=query.list();
+		} else {
+			Query query = getCurrentSession().createQuery("from Article a  order by a.titleTime desc ");
+			list=query.list();
+		}
+		
 			
 		tx.commit();
 		
@@ -118,7 +127,7 @@ public class ArticleDaoImpl implements IArticleDao {
 	public void insertTop(Integer id) {
 		// TODO Auto-generated method stub
 		ActionContext context = ActionContext.getContext();
-		User user = (User)context.getSession().get("current_user");
+		User user = (User)context.getSession().get(Const.CURRENT_USER);
 		Transaction tx =sessionFactory.getCurrentSession().beginTransaction();
 		
 		Top top =new Top();

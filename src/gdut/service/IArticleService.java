@@ -4,6 +4,7 @@ import java.util.List;
 
 import gdut.po.Article;
 import gdut.po.Top;
+import gdut.po.User;
 
 public interface IArticleService {
 	public void insert(Article article) ;
@@ -12,16 +13,17 @@ public interface IArticleService {
 	public Article findById(Integer id); 
 	public List<Article> showArticles() ;
 	/*
-	 * ÏÔÊ¾ÖÃ¶¥Ìû×Ó
+	 * ï¿½ï¿½Ê¾ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * */
 	public List<Top> showTopArticles() ;
 	
 	/*
-	 * É¾³ýÖÃ¶¥
+	 * É¾ï¿½ï¿½ï¿½Ã¶ï¿½
 	 * */
 	public  void deleteTop(Integer id) ;
 	/*
-	 *ÖÃ¶¥ 
+	 *ï¿½Ã¶ï¿½ 
 	 */
 	public  void insertTop(Integer id) ;
+	public boolean postArticle(String content,String title_content,User user);
 }

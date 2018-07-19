@@ -9,13 +9,13 @@
 <html>
 <head>
     <title>发帖</title>
-    <link rel="stylesheet" type="text/css" href="/images/css/bootstrap.min.css">
-    <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/images/css/bootstrap.min.css">
+    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/images/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <form action="${pageContext.request.contextPath}/DealSendArticleServlet" class="form-horizontal" method="get">
+    <form action="postArticle" class="form-horizontal" method="post">
         <div class="form-group" style="margin-top:30px;">
-            <label class="col-sm-offset-2 col-sm-10 "><h3>${user.userName}</h3></label>
+            <label class="col-sm-offset-2 col-sm-10 "><h3>${currentUser.userName}</h3></label>
         </div>
         <div class="form-group">
             <label for="title_content" class="col-sm-2 control-label">标题</label>
@@ -26,12 +26,12 @@
         <div class="form-group">
             <label for="article_content" class="col-sm-2 control-label" >内容</label>
             <div class="col-sm-10">
-                <textarea style="width:200px;height: 300px;" id="article_content" name="article_content"></textarea>
+                <textarea style="width:200px;height: 300px;" id="article_content" name="content"></textarea>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <a role="button" href="${pageContext.request.contextPath}/DealArticlesServlet" class="btn btn-Warning">返回</a>
+                <a role="button" href="${pageContext.request.contextPath}/showArticles" class="btn btn-Warning">返回</a>
                 <button type="submit" class="btn btn-primary">
                     发表
                 </button>

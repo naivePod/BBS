@@ -63,6 +63,9 @@
 			<result type="redirectAction">showArticles</result>
 		</action>
 		
+		<action name="postArticle" class="ArticleAction" method="postArticle">
+			<result type="chain">showArticles</result>
+		</action>
 		
 		
 		

@@ -64,7 +64,7 @@ public class ReplyDaoImpl implements IReplyDao{
 		List res = query.list();
 		tx.commit();
 		
-		return res.size();
+		return (Integer) res.get(0);
 		
 	}
 }
