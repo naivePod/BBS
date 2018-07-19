@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>更改密码</title>
-    <link rel="stylesheet" type="text/css" href="/images/css/bootstrap.min.css">
-    <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/images/css/bootstrap.min.css">
+    <script language="JavaScript" type="text/javascript" src="${pageContext.request.contextPath}/images/js/bootstrap.min.js"></script>
 </head>
 <body>
     <form action="" class="form-horizontal">

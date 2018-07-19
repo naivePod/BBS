@@ -42,6 +42,9 @@
 			<result name="success">/login.jsp</result>
 
 		</action>
+		<action name="QueryUsers" class="gdut.action.UserAction" method="queryUsers">
+			<result >/showusers.jsp</result>
+		</action>
 		
 		<action name="showArticles" class="ArticleAction" method="showArticles">
 			<result>/main.jsp</result>
@@ -66,6 +69,8 @@
 		<action name="postArticle" class="ArticleAction" method="postArticle">
 			<result type="chain">showArticles</result>
 		</action>
+		
+		
 		
 		
 		
