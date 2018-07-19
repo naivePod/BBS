@@ -80,7 +80,7 @@ public class UserAction extends ActionSupport {
 		if(iUserService.login(username, password)) {
 			return SUCCESS;
 		}
-		errorInfo = "�˺Ż��������";
+		errorInfo = "登录失败";
 		
 		return "error";
 	}
