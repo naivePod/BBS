@@ -1,8 +1,12 @@
 package gdut.service.impl;
 
+import java.util.Date;
+import java.util.logging.SimpleFormatter;
+
 import gdut.dao.IUserDao;
 import gdut.po.User;
 import gdut.service.IUserService;
+import gdut.util.Const;
 
 public class UserServiceImpl implements IUserService {
 	private IUserDao iUserDao;
@@ -16,15 +20,26 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public boolean login(String username, String password) {
+	public User login(String username, String password) {
 		User user = iUserDao.selectByUsernameAndPassword(username, password);
-		if(user == null) return false;
-		return true;
+		return user;
 	}
 
 	@Override
 	public boolean regist(User user)
 	{
+		user.setRole(Const.ROLE.ROLE_USER);
+		user.setCreateTime(new Date());
 		return  iUserDao.registUser(user);
 	}	
+	
+	public boolean validateUserName(String username) {
+		if(username == null) return false;
+		int resRow = iUserDao.selectByUserName(username);
+		if(resRow >0) {
+			return false;
+		}
+		
+		return true;
+	}
 }

@@ -22,6 +22,7 @@ public interface IUserDao {
 	 * */
 	public User selectByUsernameAndPassword(String username, String password);
 	
+	public int selectByUserName(String username);
 	
 
 }

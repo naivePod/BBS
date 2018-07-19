@@ -1,0 +1,139 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+}
+body{
+    height: 100%;
+}
+#body-bg{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    filter: blur(10px);
+}
+#wrap{
+    width: 400px;
+    height: 386px;
+    border-radius: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -193px;
+    background: transparent;
+}
+#wrap form{
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(255, 255, 255, 0.2);
+}
+#wrap form .icon-userBig{
+    display: block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #ccc;
+    font-size: 38px;
+    text-align: center;
+    border: 4px #ccc solid;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: 14px;
+    margin-bottom: -50px;
+}
+#wrap form h1{
+    color: #ddd;
+    font-size: 26px;
+    font-weight: normal;
+    text-align: center;
+    margin-top: 60px;
+}/*
+#wrap form input{
+    background: inherit;
+}*/
+#wrap form .input-wrap{
+    width: 305px;
+    height: 30px;
+    background: inherit;
+    border-radius: 4px;
+    margin:  25px auto;
+}
+#wrap form .input-wrap .icon{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #ccc;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 15px;
+}
+#wrap form .input-wrap .warning{
+	color: red;
+}
+#wrap form .input-wrap input[type="text"],
+#wrap form .input-wrap input[type="password"]{
+    width: 270px;
+    height: 30px;
+    border: none;
+    background: inherit;
+    text-indent: 1em;
+    box-sizing: border-box;
+    position: relative;
+    top: -3px;
+}
+#wrap form .radio-box{
+    width: 305px;
+    height: 30px;
+    margin:  25px auto;
+    text-align: center;
+    margin-bottom: -2px;
+    color: #5f5f5f;
+}
+
+#wrap form .btn-submit{
+    display: block;
+    width: 280px;
+    height: 35px;
+    margin:  8px auto;
+    border: 1px transparent solid;
+    border-radius: 4px;
+    color: #eee;
+// background: rgba(103, 52, 52, 0.6);
+    background: rgba(36, 196, 22, 0.60);
+    cursor: pointer;
+}
+#wrap form .btn-submit:hover{
+    color: #fff;
+//background: rgba(103, 52, 52, 0.7);
+    background: rgba(36, 196, 22, 0.7);
+}
+#wrap form .btn-regist{
+    display: block;
+    width: 280px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    margin:  8px auto;
+    border: 1px transparent solid;
+    border-radius: 4px;
+    color: #eee;
+    background: rgba(255, 70, 16, 0.7);
+    cursor: pointer;
+}
+#wrap form .btn-regist:hover{
+    color: #fff;
+    background: rgb(255, 70, 16);
+}

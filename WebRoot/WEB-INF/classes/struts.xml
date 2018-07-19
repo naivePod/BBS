@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-	<package name="gdut.action" extends="struts-default" namespace="/">
+	<package name="gdut.action" extends="struts-default,json-default" namespace="/">
 	
 		<interceptors>
 			
@@ -16,25 +16,27 @@
 			<result name="out">/index.jsp</result>
 		</global-results>
 		<action name="login" class="UserAction" method="login">
-			<result >/success.jsp</result>
-			<result name="error">/index.jsp</result>
+			<result type="chain">logout</result>
+			<result name="error">/login.jsp</result>
+			
 		</action>
 		
-<<<<<<< HEAD
+
 		<action name="regist" class="gdut.action.UserAction" method="regist">
-			<result name="success">/login.jsp</result>
-			<result name="error">/index.jsp</result>
-=======
+			<result name="success" type="redirect">/login.jsp</result>
+			<result name="error">/register.jsp</result>
+		</action>
 		<action name="postReply" class="gdut.action.ReplyAction" method="postReply">
 			<interceptor-ref name="validateCharacter"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result >/success.jsp</result>
-<<<<<<< HEAD
 			<result name="error">/index.jsp</result>
-=======
-		<result name="error">/index.jsp</result>
->>>>>>> 1e18da228610915e8bcd2297da846c0419822608
->>>>>>> 97a7a82a9cc8dd37092ee8b12591f551bed8eef2
+		</action>
+		<action name="validateUserName" class="gdut.action.UserAction" method="validateUserName">
+			<result type="json">/register.jsp</result>
+		</action>
+		<action name="logout" class="gdut.action.UserAction" method="logout">
+			<result name="success">/login.jsp</result>
 		</action>
 		
 	</package>

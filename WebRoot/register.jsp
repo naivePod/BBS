@@ -1,110 +1,109 @@
 
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2018/1/11 0011
-  Time: 下午 12:22
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>注册</title>
-    <link rel="stylesheet" type="text/css" href="/images/css/bootstrap.min.css">
-    <script language="JavaScript" type="text/javascript" src="/images/js/bootstrap.min.js"></script>
+    <script charset="utf-8" src="images/js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="images/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/regist.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    
+    <script type="text/javascript">
+		
+		
+		 $(function(){
+            var isPwdSame = false;//密码是否相同
+            var isUserNameAlreadyNotHas = false;//用户名是否已经被使用了
+      		
+            //两次输入的密码是否相同
+            $("#confirmPsw").keyup(function(){
+                //alert($(this).val());
+                if( $(this).val() === ($("#psw").val()) ){
+                    //aler("show");
+                    $(".warning-pwd").hide();
+                    isPwdSame = true;
+                }else{
+                    //alert("hide");
+                    $(".warning-pwd").show();
+                    isPwdSame = false;
+                }
+            });
+            $("#submit").click(function(){
+                if ($("#confirmPsw").val() == ($("#psw").val())) {
+                     isPwdSame = true;
+                } else {
+                     isPwdSame = false;
+                }
+                console.log("isPwdSame"+isPwdSame);
+                console.log("isUserNameAlreadyNotHas"+isUserNameAlreadyNotHas);	
+                if(isPwdSame && isUserNameAlreadyNotHas){
+                    $("form").submit();
+                }else{
+                    alert("请重新填写");
+                    return false;
+                }
+                
+            });
+            /*
+            $("#username").blur(function(){
+                $.post("isAlreadyHas",{"u.username":$(this).val()},function(data){
+                    alert(data.has);
+                    if(data.isHas == true){
+                        isSame = true;
+                        $(".isHas").hide();
+                    }else{
+                        isSame = false;
+                        $(".isHas").show();
+                    }
+                })
+            });*/
+            $('#username').blur(function() {
+				if($(this).val()!="") {
+					$.post('validateUserName', {"username":$(this).val()}, function(data) {
+					
+					if(data.info=="用户名已注册") {
+						$('.warning-username').show();
+						isUserNameAlreadyNotHas = false;
+					} else {
+						$('.warning-username').hide();
+						isUserNameAlreadyNotHas = true;
+					}
+				});
+				}
+			});
+        })
+		
+	</script>
 </head>
 <body>
-    <form action="regist" class="form-horizontal" method="post">
-        <div class="form-group" style="margin-top:30px;">
-            <label class="col-sm-offset-2 col-sm-10 "><h3>用户注册</h3></label>
+<img id="body-bg" src="images/forest4.jpg" >
+<div id="wrap">
+    <form rm action="regist" method="post">
+        <span class="icon-userBig icon-user"></span>
+        <h1>用户注册</h1>
+        <div class="input-wrap">
+            <span class="icon icon-user"></span>
+            <input  type="text" placeholder="请输入用户名" id="username" name="user.userName"></br>
+            <p class="warning warning-username"><span class="icon-warning"></span>该用户名已被使用</p>
         </div>
-        <div class="form-group">
-            <label for="username" class="col-sm-2 control-label">用户名</label>
-            <div class="col-sm-8">
-                <input type="text" id="userName" name="user.userName" placeholder="用户名">
-            </div>
+        <div class="input-wrap">
+            <span class="icon icon-key"></span>
+            <input  type="password" placeholder="请输入密码" id="psw" name="user.psw"></br>
         </div>
-        <c:if test="${formBean.errors.userName != null}">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-sm-2" >
-                    <div class="alert alert-warning ">
-                        <a href="#" class="close" data-dismiss="alert">
-                            &times;
-                        </a>
-                        <strong><c:out value="${formBean.errors.userName}"></c:out></strong>
-                    </div>
-                </div>
-            </div>
-        </c:if>
-        <div class="form-group">
-            <label for="psw" class="col-sm-2 control-label">密码</label>
-            <div class="col-sm-10">
-                <input type="password" id="psw" name="user.psw" placeholder="密码">
-            </div>
+        <div class="input-wrap">
+            <span class="icon icon-key"></span>
+            <input  type="password" placeholder="请再次确认密码" id="confirmPsw" name="confirmPsw"></br>
+            <p class="warning warning-pwd"><span class="icon-warning"></span>两次输入密码不一致</p>
         </div>
-        <c:if test="${formBean.errors.psw != null}">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-sm-2" >
-                    <div class="alert alert-warning ">
-                        <a href="#" class="close" data-dismiss="alert">
-                            &times;
-                        </a>
-                        <strong><c:out value="${formBean.errors.psw}"></c:out></strong>
-                    </div>
-                </div>
-            </div>
-        </c:if>
-        <div class="form-group">
-            <label for="confirmPsw" class="col-sm-2 control-label">再次确认密码</label>
-            <div class="col-sm-10">
-                <input type="password" id="confirmPsw" name="confirmPsw" placeholder="再次确认密码">
-            </div>
+         <div class="input-wrap">
+            <span class="icon icon-envelop"></span>
+            <input type="text" placeholder="请输入邮箱" id="email" name="user.email"></br>
         </div>
-        <c:if test="${formBean.errors.confirmPsw != null}">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-sm-2" >
-                    <div class="alert alert-warning ">
-                        <a href="#" class="close" data-dismiss="alert">
-                            &times;
-                        </a>
-                        <strong><c:out value="${formBean.errors.confirmPsw}"></c:out></strong>
-                    </div>
-                </div>
-            </div>
-        </c:if>
-        <div class="form-group">
-            <label for="email" class="col-sm-2 control-label">邮箱</label>
-            <div class="col-sm-10">
-                <input type="text" id="email" name="user.email" placeholder="邮箱">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="birth" class="col-sm-2 control-label">出生日期</label>
-            <div class="col-sm-10">
-                <input type="text" id="birth" name="user.birth" placeholder="出生日期">
-            </div>
-        </div>
-        <c:if test="${message!=null}">
-            <div class="col-md-offset-2 col-sm-2" >
-                <div class="alert alert-success ">
-                    <a href="#" class="close" data-dismiss="alert">
-
-                    </a>
-                    <strong><c:out value="${message}"></c:out></strong>
-                </div>
-            </div>
-            </div>
-            ${str}
-        </c:if>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <a role="button" href="${pageContext.request.contextPath}/login.jsp" class="btn btn-Warning">返回</a>
-                <button type="submit" class="btn btn-primary">
-                    注册
-                </button></div>
-        </div>
-
+        <input id="submit" class="btn-submit" type="submit" value="立即注册">
     </form>
+</div>
 </body>
 </html>

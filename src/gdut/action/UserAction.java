@@ -5,6 +5,7 @@ import java.util.Map;
 import gdut.dao.IUserDao;
 import gdut.po.User;
 import gdut.service.IUserService;
+import gdut.util.Const;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,10 +15,36 @@ public class UserAction extends ActionSupport {
 	private String password;
 	private IUserService iUserService;
 	private User user;
-	public IUserService getiUserService() {
-		return iUserService;
+	private String info;//username的检验信息
+	private Integer role;
+	
+	
+	
+	public Integer getRole() {
+		return role;
 	}
 
+
+
+	public void setRole(Integer role) {
+		this.role = role;
+	}
+
+
+
+	public String getInfo() {
+		return info;
+	}
+
+
+
+	public void setInfo(String info) {
+		this.info = info;
+	}
+
+
+
+	
 
 
 	public void setiUserService(IUserService iUserService) {
@@ -77,10 +104,27 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String login() {
-		if(iUserService.login(username, password)) {
+		ActionContext context = ActionContext.getContext();
+		User currentUser = (User)context.getSession().get(Const.CURRENT_USER);
+		if(currentUser != null) {
 			return SUCCESS;
 		}
-		errorInfo = "�˺Ż��������";
+		User loginUser = iUserService.login(user.getUserName(), user.getPsw());
+		System.out.print(username + password);
+		if(loginUser != null) {
+			if(role.equals(Const.ROLE.ROLE_ADMIN)) {
+				//管理员登录
+				if(!loginUser.getRole().equals(Const.ROLE.ROLE_ADMIN)) {
+					errorInfo = "非管理员无法登录";
+					return "error";
+				} {
+					return SUCCESS;
+				}
+			}
+			loginUser.setRole(Const.ROLE.ROLE_USER);
+			return SUCCESS;
+		}
+		errorInfo = "账号或密码错误";
 		
 		return "error";
 	}
@@ -93,10 +137,25 @@ public class UserAction extends ActionSupport {
 		if(iUserService.regist(user))
 			return "success";
 		else {
-			errorInfo="登录错误";
+			errorInfo="注册错误";
 			return "error";
 		}
 	}
-
+	
+	public String validateUserName() {
+		boolean isSuccess = iUserService.validateUserName(username);
+		if(!isSuccess) {
+			info = "用户名已注册";
+		} else {
+			info = "该用户名可以使用";
+		}
+		return SUCCESS;
+	}
+	
+	public String logout() {
+		ActionContext context = ActionContext.getContext();
+		context.getSession().remove(Const.CURRENT_USER);
+		return SUCCESS;
+	}
 
 }

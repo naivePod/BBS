@@ -88,6 +88,15 @@ public class UserDaoImpl implements IUserDao {
 		return true;
 	}
 	
+	public int selectByUserName(String username) {
+		Transaction tx=this.getCurrentSession().beginTransaction();
+		Query query = getCurrentSession().createQuery("from User u where u.userName =?");
+		query.setParameter(0, username);
+		List res = query.list();
+		tx.commit();
+		
+		return res.size();
+	}
 	
 	
 	
